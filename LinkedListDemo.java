@@ -5,7 +5,6 @@ class LinkedList{
         this.data =  data;
     }
 }
-
 class List{
     LinkedList  head = null;
     LinkedList cur =null;
@@ -41,20 +40,49 @@ class List{
         cur.next = cur.next.next;
     }
 
+}
 
+class MergeTwoSortedList{
+    LinkedList cur ;
+    LinkedList cur1;
+    LinkedList cur2;
+    LinkedList dummy = new LinkedList(-1);
+    LinkedList result =  dummy;
+    void mergeList(LinkedList list1,LinkedList list2){
+        
+        cur1 = list1;
+        cur2 = list2;
+
+
+        while(cur1!=null && cur2!=null){
+            if(cur1.data<cur2.data){
+                result.next = cur1;
+                cur1 = cur1.next;
+            }
+            else{
+                result.next = cur2;
+                cur2 = cur2.next;
+            }
+            result = result.next;
+        }
+        if(cur1!=null) result.next = cur1;
+        if(cur2!=null) result.next = cur2;
+       
+
+    }
 }
 
 public class LinkedListDemo {
     public static void main(String[] args) {
-        List l = new List();
-        l.insert(1);
-        l.insert(2);
-        l.insert(3);
-        l.insert(4);
-        l.insert(5);
-        l.display();
-        l.deleteIndex(2);
-        l.display();
+        LinkedList l1 = new LinkedList(1);
+        l1.next = new LinkedList(2);
+        l1.next.next = new LinkedList(5);
+
+        LinkedList l2 = new LinkedList(1);
+        l2.next = new LinkedList(3);
+        l2.next.next = new LinkedList(4);
+        MergeTwoSortedList merge = new MergeTwoSortedList();
+        merge.mergeList(l1,l2);
     }
 }
 
